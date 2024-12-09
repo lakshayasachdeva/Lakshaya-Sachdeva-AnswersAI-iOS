@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AppCard: Identifiable, Equatable {
+struct AppCard: Identifiable, Equatable, Codable {
     let id = UUID()
     let title: String
     let subtitle: String
@@ -19,6 +19,10 @@ struct AppCard: Identifiable, Equatable {
     let appIcon: String
     let appDeveloper: String
     let detail: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case title, subtitle, description, imageName, appName, appCategory, hasInAppPurchase, appIcon, appDeveloper, detail
+    }
     
     // Implementing Equatable
     static func == (lhs: AppCard, rhs: AppCard) -> Bool {

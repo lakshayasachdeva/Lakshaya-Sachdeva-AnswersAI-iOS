@@ -97,7 +97,9 @@ struct CardView: View {
                 .background(.ultraThinMaterial)
             }
         }
-        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+        .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 5)
+        .shadow(color: .black.opacity(0.12), radius: 1, x: 0, y: 1)
         .padding(.horizontal, 8)
         .padding(.vertical, 4)
         .fullScreenCover(isPresented: $showInstallOverlay, onDismiss: {

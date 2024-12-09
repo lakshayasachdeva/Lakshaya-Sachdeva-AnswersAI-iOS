@@ -141,7 +141,7 @@ struct DetailView: View {
                             let screenHeight = UIScreen.main.bounds.height
                             
                             DispatchQueue.main.async {
-                                isNearBottom = offset < screenHeight + 100
+                                isNearBottom = offset < screenHeight + 60
                             }
                             return Color.clear
                         }
@@ -165,15 +165,20 @@ struct DetailView: View {
                 .padding(.horizontal)
                 .offset(x: 0, y: 75)
                 
-                if showFloatingView {
-                    VStack {
-                        Spacer()
-                        FloatingAppView(card: card)
-                            .offset(y: showFloatingView ? 0 : 100)
-                            .opacity(showFloatingView ? 1 : 0)
-                    }
-                    .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showFloatingView)
+                VStack {
+                    Spacer()
+                    FloatingAppView(
+                        card: card,
+                        isLoading: $isLoading,
+                        showInstallOverlay: $showInstallOverlay
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .offset(y: showFloatingView ? 0 : 0)
+                    .opacity(showFloatingView ? 1 : 0)
+                    .padding(.horizontal)
+                    .padding(.bottom, safeArea().bottom == 0 ? 8 : safeArea().bottom - 8)
                 }
+                .animation(.spring(response: 0.4, dampingFraction: 0.7, blendDuration: 0.5), value: showFloatingView)
             }
             .ignoresSafeArea()
             .onChange(of: showFloatingView) { newValue in

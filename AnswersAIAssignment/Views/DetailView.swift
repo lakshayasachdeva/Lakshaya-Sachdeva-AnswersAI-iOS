@@ -169,11 +169,18 @@ struct DetailView: View {
                     VStack {
                         Spacer()
                         FloatingAppView(card: card)
+                            .offset(y: showFloatingView ? 0 : 100)
+                            .opacity(showFloatingView ? 1 : 0)
                     }
-                    .transition(.move(edge: .bottom))
+                    .animation(.spring(response: 0.3, dampingFraction: 0.8), value: showFloatingView)
                 }
             }
             .ignoresSafeArea()
+            .onChange(of: showFloatingView) { newValue in
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                    showFloatingView = newValue
+                }
+            }
         }
         .navigationBarBackButtonHidden()
         .background(Color(UIColor.systemBackground).ignoresSafeArea())

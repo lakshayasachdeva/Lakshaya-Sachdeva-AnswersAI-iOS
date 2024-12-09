@@ -32,7 +32,9 @@ struct DetailView: View {
                         ZStack {
                             Image(card.imageName)
                                 .resizable()
-                                .scaledToFill()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(height: 500)
+                                .clipped()
                             
                             VStack(alignment: .leading, spacing: 16) {
                                 Spacer()
@@ -41,7 +43,7 @@ struct DetailView: View {
                                         .font(.subheadline)
                                         .fontWeight(.semibold)
                                         .textCase(.uppercase)
-                                        .foregroundStyle(.white.opacity(0.7))
+                                        .foregroundStyle(.white.opacity(0.8))
                                     
                                     Text(card.title)
                                         .font(.title)
@@ -50,7 +52,7 @@ struct DetailView: View {
                                     
                                     Text(card.description)
                                         .font(.caption)
-                                        .foregroundStyle(.white.opacity(0.7))
+                                        .foregroundStyle(.white.opacity(0.8))
                                 }
                                 .padding(.leading, 16)
                                 
@@ -161,7 +163,6 @@ struct DetailView: View {
         }
         .navigationBarBackButtonHidden()
         .background(Color(UIColor.systemBackground).ignoresSafeArea())
-        .preferredColorScheme(.dark)
         .sheet(isPresented: $showShareSheet) {
             ShareSheet(items: [
                 "Check out this app: \(String(describing: card.appName))",

@@ -27,7 +27,7 @@ struct CardView: View {
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .textCase(.uppercase)
-                        .foregroundStyle(.white.opacity(0.7))
+                        .foregroundStyle(.white.opacity(0.8))
                     
                     Text(card.title)
                         .font(.title)
@@ -37,7 +37,7 @@ struct CardView: View {
                     
                     Text(card.description)
                         .font(.caption)
-                        .foregroundStyle(.white.opacity(0.7))
+                        .foregroundStyle(.white.opacity(0.8))
                         .multilineTextAlignment(.leading)
                     
                 }

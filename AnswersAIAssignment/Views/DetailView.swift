@@ -14,6 +14,7 @@ struct DetailView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showShareSheet: Bool = false
     @State private var showFloatingView = false
+    @State private var isNearBottom = false
     
     var body: some View {
         NavigationStack {
@@ -22,8 +23,10 @@ struct DetailView: View {
                     VStack {
                         GeometryReader { reader -> AnyView in
                             let offset = reader.frame(in: .global).minY
+                            let contentHeight = reader.frame(in: .global).height
+                            
                             DispatchQueue.main.async {
-                                showFloatingView = offset < -500
+                                showFloatingView = offset < -500 && !isNearBottom
                             }
                             return AnyView(Color.clear)
                         }
@@ -132,6 +135,17 @@ struct DetailView: View {
                                 }
                         }
                         .padding()
+                        
+                        GeometryReader { reader -> Color in
+                            let offset = reader.frame(in: .global).minY
+                            let screenHeight = UIScreen.main.bounds.height
+                            
+                            DispatchQueue.main.async {
+                                isNearBottom = offset < screenHeight + 100
+                            }
+                            return Color.clear
+                        }
+                        .frame(height: 0)
                     }
                     .padding(.bottom)
                 }
@@ -209,3 +223,4 @@ extension View {
         return safeArea
     }
 }
+

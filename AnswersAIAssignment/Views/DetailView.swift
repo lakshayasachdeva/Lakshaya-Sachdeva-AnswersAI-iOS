@@ -213,7 +213,7 @@ struct DetailView: View {
         title: "Hit the Ground Running\nWith Runna",
         subtitle: "APPS WE LOVE",
         description: "Training plans for your next marathon or run around the park.",
-        imageName: "card_cover_img",
+        imageName: "img4",
         appName: "Runna: Running Training Plans",
         appCategory: "5k, 10k, Half, Marathon, Ultra",
         hasInAppPurchase: true,

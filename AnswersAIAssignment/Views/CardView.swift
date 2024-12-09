@@ -100,7 +100,7 @@ struct CardView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
         .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 5)
         .shadow(color: .black.opacity(0.12), radius: 1, x: 0, y: 1)
-        .padding(.horizontal, 8)
+        .padding(.horizontal, 16)
         .padding(.vertical, 4)
         .fullScreenCover(isPresented: $showInstallOverlay, onDismiss: {
         }) {
@@ -118,7 +118,7 @@ struct CardView: View {
         title: "Hit the Ground Running\nWith Runna",
         subtitle: "APPS WE LOVE",
         description: "Training plans for your next marathon or run around the park.",
-        imageName: "card_cover_img",
+        imageName: "img3",
         appName: "Runna: Running Training Plans",
         appCategory: "5k, 10k, Half, Marathon, Ultra",
         hasInAppPurchase: true,
